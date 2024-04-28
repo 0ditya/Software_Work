@@ -11,7 +11,7 @@ sentiment_model.eval()
 ner_tokenizer = AutoTokenizer.from_pretrained("dbmdz/bert-large-cased-finetuned-conll03-english")
 ner_model = AutoModelForTokenClassification.from_pretrained("dbmdz/bert-large-cased-finetuned-conll03-english")
 ner_model.eval()
-
+ #provide advice
 def get_advice(sentiment_label, stocks_mentioned):
     if sentiment_label == "Positive":
         advice = "Positive sentiment. Consider taking advantage of positive market trends."

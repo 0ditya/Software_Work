@@ -6,13 +6,15 @@ from plotly import graph_objects as go
 
 import streamlit as st
 
-st.set_page_config(layout="wide")
+st.set_page_config(layout="wide") #sets page layout for better visualization
 
 from subs.access_backend import get_tickerlist
 from subs.access_backend import get_plot
 
-tickerTable = get_tickerlist().set_index("Ticker")
+tickerTable = get_tickerlist().set_index("Ticker") #sets list of ticker and index =ticker
 
+
+#defines sector selection dropdown
 PrimeStandardSector = "Prime Standard Sector"
 sectors = tickerTable[PrimeStandardSector].unique()
 sectors.sort()
@@ -20,11 +22,11 @@ sector = st.selectbox(
     label="Select a Sector. Remark: This sets the default for the selected stocks",
     options=sectors,
 )
-
+#filter tickers based on selected sector
 default_index = tickerTable[PrimeStandardSector] == sector
 
 default = tickerTable[default_index]
-
+#allow user to get ,multiple dax constituents
 selections = st.multiselect(
     label="Dax Constituents",
     options=list(tickerTable.index),
